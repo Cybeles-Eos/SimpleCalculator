@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width,height=device-height initial-scale=1.0">
+   <title>Calculator</title>
+</head>
+<style>
+   @font-face {
+      font-family: Inter;
+      src: url(Inter-VariableFont_opsz\,wght.ttf);
+   } 
+   @font-face {
+      font-family: Padauk;
+      src: url(Padauk-Regular.ttf);
+   }
+   *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: "Padauk", sans-serif, Arial;
+   }
+   body{
+      background-color: #0c0c0c;
+   }
+   .calculator-box{
+      max-width: 348px;
+      margin: auto auto;
+      height: 100vh;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      padding: .5rem;
+   }
+   .result{
+      width: 100%;
+      height: 100%;
+      text-align: end;
+      font-size: 3.5rem;
+      padding: 10px;
+      border: none;
+      color: #FFF;
+      outline: none;
+      letter-spacing: 2px;
+      background-color: transparent;
+      font-family: "Inter", sans-serif, Arial !important;
+   }
+   .allKeysHolder{
+      margin-bottom: 1.5rem;
+   }
+   .keys{
+      margin-top: 1.4rem;
+      display: flex;
+      justify-content: space-between;
+   }
+   .key{
+      font-size: 2rem;
+      border: none;
+      background-color: #1f1f1f;
+      color: #dfdfdf;
+      width: 4.6rem;
+      height: 4.5rem;
+      border-radius: 23rem;
+      box-shadow: -3px 3px 0px #141414;
+   }
+   .key:nth-last-child(1){
+      background-color: #141414;
+      box-shadow: -3px 3px 0px #080808b6;
+   }
+   .keys:nth-last-child(1) .key:nth-last-child(1){
+      background-color: #ff4400c5;
+      font-size: 3rem;
+      width: 9.9rem; 
+      box-shadow: -3px 3px 0px #832706f8;
+   }   
+   .keys:nth-last-child(1) .key:nth-last-child(2),
+   .keys:nth-last-child(1) .key:nth-last-child(3){
+      background-color: #141414;
+      box-shadow: -3px 3px 0px #080808;
+   }
+   .key:active, .key:nth-last-child(1):active,
+   .keys:nth-last-child(1) .key:nth-last-child(1):active,
+   .keys:nth-last-child(1) .key:nth-last-child(2):active,
+   .keys:nth-last-child(1) .key:nth-last-child(3):active{
+      transform: translateX(-3px) translateY(3px);
+      box-shadow: none;
+   }
+</style>
+<body>
+   
+   <main class="calculator-box">
+      <input class="result" type="text" readonly>
+      <div class="allKeysHolder">
+         <div class="keys">
+            <button class="key" onclick="solve('7')">7</button>
+            <button class="key" onclick="solve('8')">8</button>
+            <button class="key" onclick="solve('9')">9</button>
+            <button class="key" onclick="solve('/')">/</button>
+         </div>
+         <div class="keys">
+            <button class="key" onclick="solve('4')">4</button>
+            <button class="key" onclick="solve('5')">5</button>
+            <button class="key" onclick="solve('6')">6</button>
+            <button class="key" onclick="solve('*')">x</button>
+         </div>
+         <div class="keys">
+            <button class="key" onclick="solve('1')">1</button>
+            <button class="key" onclick="solve('2')">2</button>
+            <button class="key" onclick="solve('3')">3</button>
+            <button class="key" onclick="solve('-')">-</button>
+         </div>
+         <div class="keys">
+            <button class="key" onclick="solve('00')">00</button>
+            <button class="key" onclick="solve('0')">0</button>
+            <button class="key" onclick="solve('.')">.</button>
+            <button class="key" onclick="solve('+')">+</button>
+         </div>
+         <div class="keys">
+            <button class="key" onclick="solve('%')">%</button>
+            <button class="key" onclick="clearResult()">C</button>
+            <button class="key" onclick="solveResult()">=</button>
+         </div> 
+      </div>
+   </main>
+
+</body>
+<script>
+   const result = document.querySelector('.result');
+
+   function solveResult(){
+      try{
+         if(result.value == ''){
+            return;
+         }
+         result.value = eval(result.value)
+      }catch(e){
+         result.value = "Invalid";
+      }
+   }
+
+   function solve(numOpe){
+      result.value += numOpe;
+   }
+   function clearResult(){
+      result.value = '';
+   }
+</script>
+</html>
