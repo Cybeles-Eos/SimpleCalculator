@@ -120,10 +120,8 @@
 
    function solveResult(){
       try{
-         if(result.value == ''){
-            return;
-         }
-         result.value = eval(result.value)
+         if(result.value == ''){return}
+         result.value = (result.value == '.0.0.0.') ? 'LOVE YOU' : eval(result.value)
       }catch(e){
          result.value = "Invalid";
       }
